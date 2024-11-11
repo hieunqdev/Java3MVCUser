@@ -24,7 +24,7 @@ public class Favorite {
 	@ManyToOne
 	@JoinColumn(name = "Userld")
 	private User user;
-	//	TemporalType.DATE chỉ lấy phần ngày, bỏ qua phần thời gian (giờ, phút, giây
+	// TemporalType.DATE chỉ lấy phần ngày, bỏ qua phần thời gian (giờ, phút, giây)
 	@Temporal(TemporalType.DATE)
 	private Date likeDate;
 	public Long getId() {

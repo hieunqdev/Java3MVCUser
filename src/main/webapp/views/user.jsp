@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     
 <!DOCTYPE html>
-<html>s
+<html>
 <head>
 <meta charset="UTF-8">
 <title>User Manager</title>
@@ -65,7 +65,8 @@
 </head>
 <body>
 	<div class="form-container">
-        <div>
+	<form action="UserController" method="post">
+		<div>
             <label for="id">Id:</label>
             <input type="text" id="id" name="id">
             <label for="password">Password:</label>
@@ -85,11 +86,13 @@
             <label for="user">User</label>
         </div>
         <div class="action-buttons">
-            <input type="button" value="Create">
-            <input type="button" value="Update">
-            <input type="button" value="Delete">
+            <input type="submit" name="action" value="Create">
+            <input type="submit" name="action" value="Update">
+            <input type="submit" name="action" value="Delete">
             <input type="reset" value="Reset">
         </div>
+	</form>
+        
     </div>
 
     <div class="table-container">

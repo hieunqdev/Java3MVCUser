@@ -30,4 +30,20 @@ public class UserDAO {
 		List<User> list = query.getResultList();
 		return list;
 	}
+	
+	// Tạo bản ghi User
+	public void create(User user) {
+		try {
+			// getTransaction(): truy vấn JPA cần thực hiện trong getTransaction
+			// begin(): mở CSDL
+			em.getTransaction().begin();
+			// persist(): tạo bản ghi mới trong csdl
+			em.persist(user);
+			// commit(): đóng csdl
+			em.getTransaction().commit();
+		} catch (Exception e) {
+			em.getTransaction().rollback();
+		}
+	}
+	
 }

@@ -1,8 +1,11 @@
 package model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 //Annotation cho biết class User đại diện cho một bảng trong csdl
@@ -29,6 +32,12 @@ public class User {
 	@Column(name = "admin")
 	// Boolean -> bit
 	Boolean admin = false;
+	
+	// Quan hệ với bảng khác
+	// Mỗi User có thể có nhiều Favorite
+	// Thuộc tính mappedBy = "user" cho biết rằng mối quan hệ này được quản lý bởi trường user trong lớp Favorite
+	@OneToMany(mappedBy = "user") 
+	private List<Favorite> favorites;
 	
 	public User() {
 		// TODO Auto-generated constructor stub
@@ -84,4 +93,14 @@ public class User {
 	public void setAdmin(Boolean admin) {
 		this.admin = admin;
 	}
+
+	public List<Favorite> getFavorites() {
+		return favorites;
+	}
+
+	public void setFavorites(List<Favorite> favorites) {
+		this.favorites = favorites;
+	}
+	
+	
 }

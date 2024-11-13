@@ -34,7 +34,9 @@ public class UserController extends HttpServlet {
 		// TODO Auto-generated method stub
 		UserDAO ud = new UserDAO();
 		List<User> userList = ud.findAll();
+		// Đặt danh sách người dùng vào request
 		request.setAttribute("userList", userList);
+		// Chuyển tiếp đến user.jsp
 		request.getRequestDispatcher("views/user.jsp").forward(request, response);
 	}
 
@@ -43,5 +45,37 @@ public class UserController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub	
+		String action = request.getParameter("action");
+		System.out.println(action);
+		switch (action) {
+	        case "Create":
+	            createUser(request, response);
+	            break;
+	        case "Update":
+	        	createUser(request, response);
+	            break;
+	        case "Delete":
+	        	createUser(request, response);
+	            break;
+	        default:
+	            break;
+	    }
 	}
+	
+	// Phương thức xử lý tạo người dùng
+    private void createUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String id = request.getParameter("id");
+        String password = request.getParameter("password");
+        String fullname = request.getParameter("fullname");
+        String email = request.getParameter("email");
+        String role = request.getParameter("role");
+
+        User user = new User(id, password, email, fullname, "admin".equals(role));
+
+        UserDAO userDAO = new UserDAO();
+        userDAO.create(user);
+
+        // Sau khi tạo người dùng, chuyển hướng lại trang danh sách
+        response.sendRedirect("UserController");
+    }
 }

@@ -19,10 +19,10 @@ public class Favorite {
 	// Quan hệ N-1: nhiều bản ghi trong Favorite có thể tham chiếu đến 1 bản ghi trong Video
 	@ManyToOne
 	// Khóa ngoại Videold liên kết với bảng Video
-	@JoinColumn(name = "Videold")
+	@JoinColumn(name = "VideoId")
 	private Video video;
 	@ManyToOne
-	@JoinColumn(name = "Userld")
+	@JoinColumn(name = "UserId")
 	private User user;
 	// TemporalType.DATE chỉ lấy phần ngày, bỏ qua phần thời gian (giờ, phút, giây)
 	@Temporal(TemporalType.DATE)
